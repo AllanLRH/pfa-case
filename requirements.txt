@@ -1,0 +1,16 @@
+seaborn
+plotly
+streamlit
+numpy
+scipy
+pandas
+matplotlib
+pandas-profiling[notebook]
+ipykernel
+jupyterlab
+networkx
+pyshp
+geopandas
+pytest
+hiplot
+streamlit-folium
