@@ -1,12 +1,10 @@
 # %% Imports and constants
-import pathlib
-
 import pandas as pd
 from pandas_profiling import ProfileReport
 
 from src.io_ops import load_sf_csv
+from src.shared_ressources import case_root
 
-case_root = pathlib.Path(__file__).parent.absolute()
 print(f"{case_root=}")
 
 # %% Load data
