@@ -31,28 +31,12 @@ df = load_data(case_root / "data" / "sf_data.csv").sample(10_000)
 st.header("Crime incidents mapped")
 st.text("Chose what you want to see")
 
-
-class PrettyKey:
-    def __init__(self, key: str, count: int) -> None:
-        self.key = key
-        self.count = count
-
-    def __str__(self) -> str:
-        return f"{self.key} ({self.count})"
-
-    def __lt__(self, other) -> bool:
-        return self.count < other.count
-
-
 col1, col2, col3 = st.columns(3)
 mask = np.ones_like(df["category"], dtype=bool)
 
 with col1:
-    options = sorted(
-        (PrettyKey(k, v) for (k, v) in df["category"].value_counts().iteritems()),
-        reverse=True,
-    )
-    selected_categories = [el.key for el in st.multiselect("Category", options)]
+    options = sorted(df["category"].unique())
+    selected_categories = st.multiselect("Category", options)
     if selected_categories:
         mask &= df["category"].isin(selected_categories)
 with col2:
