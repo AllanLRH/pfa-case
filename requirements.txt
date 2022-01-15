@@ -14,3 +14,7 @@ geopandas
 pytest
 hiplot
 streamlit-folium
+streamlit-keplergl
+watchdog
+git+https://github.com/python-visualization/branca
+pydeck
