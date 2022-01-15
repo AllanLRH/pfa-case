@@ -14,7 +14,7 @@ from keplergl import KeplerGl
 from streamlit_keplergl import keplergl_static
 
 from src.io_ops import load_sf_csv
-from src.shared_ressources import case_root
+from src.shared_ressources import case_root, weekdays
 from src.shared_ressources import streamlit_keplergl_config as config
 
 st.set_page_config(layout="wide")
@@ -89,15 +89,6 @@ with col2:
         mask_wordfilter |= df["description"].str.contains(word)
         mask &= mask_wordfilter
 with col3:
-    weekdays = [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday",
-    ]
     date_span = (df["datetime"].min().date(), df["datetime"].max().date())
     timestamps = df["datetime"].dt.time
     time_of_day_span = (

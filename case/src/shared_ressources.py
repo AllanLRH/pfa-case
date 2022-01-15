@@ -1,6 +1,15 @@
 import pathlib
 
 case_root = pathlib.Path(__file__).parents[1].absolute()
+weekdays = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+]
 
 streamlit_keplergl_config = {
     "version": "v1",
