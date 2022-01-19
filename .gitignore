@@ -193,3 +193,4 @@ case/data/*.csv
 case/test-output.xml
 *.parquet
 *.feather
+case/artifacts/*
