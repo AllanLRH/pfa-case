@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from src.io_ops import load_sf_csv
+from src.io_ops import load_sf_dataset
 from src.shared_ressources import case_root, weekdays
 
 sns.set(context="paper", style="whitegrid", color_codes=True, font_scale=1.8)
 
 # %% Load data
-df = load_sf_csv(case_root / "data" / "sf_data.csv")
+df = load_sf_dataset()
 
 # %% [markdown]
 # ## Examine the data interactively

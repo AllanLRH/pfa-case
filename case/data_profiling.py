@@ -2,14 +2,13 @@
 import pandas as pd
 from pandas_profiling import ProfileReport
 
-from src.io_ops import load_sf_csv
+from src.io_ops import load_sf_dataset
 from src.shared_ressources import case_root
 
 print(f"{case_root=}")
 
 # %% Load data
-data_path = case_root / "data" / "sf_data.csv"
-df = load_sf_csv(data_path)
+df = load_sf_dataset()
 
 
 # %% Examine data, generate and dsave report

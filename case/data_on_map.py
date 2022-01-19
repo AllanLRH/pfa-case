@@ -13,7 +13,7 @@ import streamlit as st
 from keplergl import KeplerGl
 from streamlit_keplergl import keplergl_static
 
-from src.io_ops import load_sf_csv
+from src.io_ops import load_sf_dataset
 from src.shared_ressources import case_root, weekdays
 from src.shared_ressources import streamlit_keplergl_config as config
 
@@ -23,11 +23,11 @@ sns.set(context="paper", style="whitegrid", color_codes=True, font_scale=1.8)
 
 # %% Load data
 @st.cache()
-def load_data(path):
-    return load_sf_csv(path)
+def load_data():
+    return load_sf_dataset()
 
 
-df = load_data(case_root / "data" / "sf_data.csv").sample(10_000)
+df = load_data().sample(10_000)
 
 # %% Filter the data
 st.header("Crime incidents mapped")

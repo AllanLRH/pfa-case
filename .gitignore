@@ -191,3 +191,5 @@ dmypy.json
 .vscode/settings.json
 case/data/*.csv
 case/test-output.xml
+*.parquet
+*.feather
