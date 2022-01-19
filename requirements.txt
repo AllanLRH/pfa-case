@@ -18,3 +18,5 @@ streamlit-keplergl
 watchdog
 git+https://github.com/python-visualization/branca
 pydeck
+pystan==2.19.1.1  # install before prophet, as per instructions on the Prophet webpage
+prophet
