@@ -16,6 +16,18 @@ sns.set(context="paper", style="whitegrid", color_codes=True, font_scale=1.8)
 # %% Load data
 df = load_sf_dataset()
 
+# %% Make sure that the artifacts folder exists
+artifacts = case_root / "artifacts"
+try:
+    artifacts.mkdir(exist_ok=True)
+except PermissionError as err:
+    raise PermissionError("Lacking permission to create artifacts folder") from err
+except OSError as err:
+    raise OSError("Can't create artifacts folder") from err
+except Exception as err:
+    raise err("Unhandled exception creating artifacts folder") from err
+
+
 # %% [markdown]
 # ## Examine the data interactively
 
