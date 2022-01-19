@@ -1,6 +1,8 @@
 import pandas as pd
-
+from pathlib import Path
 from src.shared_ressources import case_root
+import matplotlib as mpl
+from typing import Union
 
 
 def load_sf_dataset(cache_as_parquet_if_no_cached_file_exists: bool = True):
@@ -27,3 +29,38 @@ def load_sf_dataset(cache_as_parquet_if_no_cached_file_exists: bool = True):
     if cache_as_parquet_if_no_cached_file_exists:
         crimes.to_parquet(parquet_path)
     return crimes
+
+
+def save_figure(
+    fig_or_ax: Union[mpl.figure.Figure, mpl.axes.Axes],
+    name: str,
+    directory: Path = case_root / "artifacts",
+    pdf: bool = True,
+    png: bool = True,
+    use_format_subfolders: bool = True,
+) -> None:
+    def _do_the_saving(fig, name, directory, fileformat, use_format_subfolders) -> None:
+        savedir = directory / fileformat if use_format_subfolders else directory
+        savedir.mkdir(exist_ok=True)
+        save_path = savedir / f"{name}.{fileformat}"
+        fig.savefig(save_path)
+
+    if not directory.exists() and directory.is_dir():
+        raise FileNotFoundError(f"Output directory does not exist ({directory})")
+    if not (pdf or png):
+        raise ValueError(
+            f"At least one of `pdf` or `png` must be `True`, but both evalueate to `False`({pdf=}, {png=})"
+        )
+    if isinstance(fig_or_ax, mpl.axes.Axes):
+        fig = fig_or_ax.get_figure()
+    elif isinstance(fig_or_ax, mpl.figure.Figure):
+        fig = fig_or_ax
+    else:
+        raise ValueError(
+            f"`fig_or_ax` must be a matplotlib Figure or Axis instance, but {type(fig_or_ax)=}"
+        )
+
+    if pdf:
+        _do_the_saving(fig, name, directory, "pdf", use_format_subfolders)
+    if png:
+        _do_the_saving(fig, name, directory, "png", use_format_subfolders)
