@@ -33,10 +33,11 @@ df = load_data().sample(10_000)
 st.header("Crime incidents mapped")
 st.text("Chose what you want to see")
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 mask = np.ones_like(df["category"], dtype=bool)
 
 with col1:
+    # Category
     options = [
         "larceny/theft",
         "other offenses",
@@ -78,7 +79,8 @@ with col1:
     selected_categories = st.multiselect("Category", options)
     if selected_categories:
         mask &= df["category"].isin(selected_categories)
-with col2:
+
+    # Keyword filter
     filtered_keywords = (
         st.text_input("Search any of these words from the description field")
         .lower()
@@ -88,7 +90,7 @@ with col2:
     for word in filtered_keywords:
         mask_wordfilter |= df["description"].str.contains(word)
         mask &= mask_wordfilter
-with col3:
+with col2:
     date_span = (df["datetime"].min().date(), df["datetime"].max().date())
     timestamps = df["datetime"].dt.time
     time_of_day_span = (
@@ -107,7 +109,18 @@ with col3:
         df.datetime <= pd.to_datetime(d_max)
     )
     mask &= (df.datetime.dt.time >= t_min) & (df.datetime.dt.time <= t_max)
-with col4:
+with col3:
+    # District
+    ignore_district_label = "ignore the district label"
+    chosen_district = st.selectbox(
+        "Chose which districts to show",
+        [ignore_district_label, "mission", "tenderloin", "sunnydale"],
+        index=0,
+    )
+    if chosen_district != ignore_district_label:
+        mask &= df.district == chosen_district
+
+    # Number of points to show
     n_max_points = 100, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000
     n_chosen = st.select_slider(
         "Select max number of points to show",
