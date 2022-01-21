@@ -2,6 +2,11 @@
 
 PFA case based on the SF Crime dataset.
 
+## Running the code
+
+The ML part of the code uses MLflow for tracking the training runs, and the associated metadata is stored in an SQLite database.
+This behavior can be changed by specifying a different target in a `.env`-file placed next to the `.envrc`-file.
+
 
 ## About the data
 

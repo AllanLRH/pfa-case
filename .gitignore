@@ -194,3 +194,4 @@ case/test-output.xml
 *.parquet
 *.feather
 case/artifacts/*
+.direnv

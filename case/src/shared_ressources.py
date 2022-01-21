@@ -1,4 +1,5 @@
 import pathlib
+import pydantic
 
 case_root = pathlib.Path(__file__).parents[1].absolute()
 weekdays = [
@@ -104,3 +105,13 @@ streamlit_keplergl_config = {
         },
     },
 }
+
+
+class Settings(pydantic.BaseSettings):
+    mlflow_server_port: str
+    mlflow_ui_port: str
+    mlflow_database_uri: str
+
+    class Config:
+        env_file = "../.env"
+        env_file_encoding = "utf-8"
