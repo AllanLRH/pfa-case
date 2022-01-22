@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from src.io_ops import load_sf_dataset, save_figure
-from src.shared_ressources import case_root, weekdays
+from src.shared_ressources import case_root, weekdays, seaborn_context
 
-sns.set(context="paper", style="whitegrid", color_codes=True, font_scale=1.8)
+sns.set(**seaborn_context)
 
 pfa_red = "#990735"
 # Make sure that the artifacts folder exists
@@ -141,5 +141,5 @@ ax.set_yticklabels([])
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
-save_figure(ax, 'observations_by_day_of_year_for_each_year')
+save_figure(ax, "observations_by_day_of_year_for_each_year")
 # %%

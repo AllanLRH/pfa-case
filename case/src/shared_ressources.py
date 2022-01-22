@@ -1,7 +1,42 @@
 import pathlib
+from unittest.util import unorderable_list_difference
 import pydantic
+from loguru import logger
+from typing import Union, TextIO, Any
+import sys
+
+
+class Settings(pydantic.BaseSettings):
+    mlflow_server_port: str
+    mlflow_ui_port: str
+    mlflow_database_uri: str
+    loguru_logging_level: str
+    loguru_debug_destination: Any
+    cache_as_parquet_if_no_cached_file_exists = bool
+
+    class Config:
+        env_file = "../.env"
+        env_file_encoding = "utf-8"
+
+    @pydantic.validator("loguru_debug_destination", pre=True)
+    def cast_to_path_or_system_stream(cls, v) -> Union[TextIO, pathlib.Path]:
+        if v.lower() == "stdout":
+            return sys.stdout
+        elif v.lower() == "stderr":
+            return sys.stderr
+        return pathlib.Path(v)
+
+
+settings = Settings()
+
+logger.remove()
+logger.add(sink=sys.stderr, level="INFO")
+if settings.loguru_logging_level == "DEBUG":
+    logger.add(sink=settings.loguru_debug_destination, level="DEBUG")
 
 case_root = pathlib.Path(__file__).parents[1].absolute()
+
+
 weekdays = [
     "monday",
     "tuesday",
@@ -106,12 +141,9 @@ streamlit_keplergl_config = {
     },
 }
 
-
-class Settings(pydantic.BaseSettings):
-    mlflow_server_port: str
-    mlflow_ui_port: str
-    mlflow_database_uri: str
-
-    class Config:
-        env_file = "../.env"
-        env_file_encoding = "utf-8"
+seaborn_context = dict(
+    context="paper",
+    style="whitegrid",
+    color_codes=True,
+    font_scale=1.8,
+)
