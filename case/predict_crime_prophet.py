@@ -22,7 +22,7 @@ sns.set(sns.set(**seaborn_context))
 # %% Load and preprocess data into a the format expected by Prophet
 
 df = load_sf_dataset()
-formatted_data = convert_to_prophet_format(df)
+formatted_data = convert_to_prophet_format(df, time_rounding="4h")
 formatted_data.head()
 
 # %% Split into training and testing dataset
@@ -42,6 +42,7 @@ del formatted_data
 
 # %% Predict overall crime using Prophet
 m = Prophet()
+m.add_country_holidays(country_name="US")
 m.fit(data_train)
 
 # %% Evalueate fit visually

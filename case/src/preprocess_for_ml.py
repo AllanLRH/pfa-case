@@ -16,9 +16,11 @@ sns.set(sns.set(**seaborn_context))
 # %%
 
 
-def convert_to_prophet_format(df: pd.DataFrame) -> pd.DataFrame:
+def convert_to_prophet_format(
+    df: pd.DataFrame, time_rounding: str = "24h"
+) -> pd.DataFrame:
     formatted_data = (
-        df.groupby(df["datetime"].dt.date)["category"]
+        df.groupby(df["datetime"].dt.round(time_rounding))["category"]
         .count()
         .rename("y")
         .rename_axis(index="ds")
