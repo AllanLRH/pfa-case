@@ -14,7 +14,7 @@ from prophet.plot import plot_components_plotly, plot_plotly
 from src.shared_ressources import seaborn_context
 from src.preprocess_for_ml import convert_to_prophet_format
 from src.io_ops import load_sf_dataset, save_figure
-from src.shared_ressources import logger
+from src.shared_ressources import logger, pfa_red
 
 sns.set(sns.set(**seaborn_context))
 
@@ -56,7 +56,16 @@ pf1.show()
 pf2.show()
 # %% Same plots as above, but made in Matplotlib for export
 prophet_crime_forecast = m.plot(forecast)
+prophet_crime_forecast.gca().get_lines()[1].set_color(pfa_red)
 save_figure(prophet_crime_forecast, "prophet_crime_forecast")
 
-prophet_crime_forecast_components = m.plot_components(forecast)
+prophet_crime_forecast_components = m.plot_components(forecast, figsize=(8, 18))
+for ax in prophet_crime_forecast_components.axes:
+    ax.get_lines()[0].set_color(pfa_red)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, fontsize=12)
+    ax.set_yticklabels(ax.get_yticklabels(), fontsize=12)
+    ax.set_title("")
+prophet_crime_forecast_components.tight_layout()
 save_figure(prophet_crime_forecast_components, "prophet_crime_forecast_components")
+
+# %%

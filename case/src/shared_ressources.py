@@ -36,6 +36,7 @@ if settings.loguru_logging_level == "DEBUG":
 
 case_root = pathlib.Path(__file__).parents[1].absolute()
 
+pfa_red = "#990735"
 
 weekdays = [
     "monday",

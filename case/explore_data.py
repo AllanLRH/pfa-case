@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from src.io_ops import load_sf_dataset, save_figure
-from src.shared_ressources import case_root, weekdays, seaborn_context
+from src.shared_ressources import case_root, weekdays, seaborn_context, pfa_red
 
 sns.set(**seaborn_context)
 
-pfa_red = "#990735"
+
 # Make sure that the artifacts folder exists
 artifacts = case_root / "artifacts"
 try:
