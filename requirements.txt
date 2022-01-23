@@ -24,3 +24,6 @@ mlflow
 pydantic[dotenv]
 sklearn
 loguru
+hdbscan
+devtools[pygments]
+icecream
