@@ -146,5 +146,5 @@ seaborn_context = dict(
     context="paper",
     style="whitegrid",
     color_codes=True,
-    font_scale=1.8,
+    font_scale=1.2,
 )
