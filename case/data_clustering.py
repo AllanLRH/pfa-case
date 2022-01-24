@@ -16,7 +16,7 @@ from src.preprocess_for_ml import (
     preprocess_for_clustering,
     preprocess_for_clustering_coordinates_only,
 )
-from src.shared_ressources import case_root, weekdays, ScikitModel
+from src.shared_ressources import case_root, weekdays
 from src.shared_ressources import streamlit_keplergl_config as config
 
 # %% supporting functions
@@ -34,11 +34,11 @@ def plot_cluster(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:
     return fig, ax
 
 
-# %%Load the data, subsample for fast experimentation
+# %% Load the data, subsample for fast experimentation
 df = load_sf_dataset()
+sub = df
+# sub = df.sample(5000)
 
-sub = df.sample(5000)
-# X = preprocess_for_clustering_coordinates_only(sub).to_numpy()
 # %% Check for structure WITHOUT the coordinates... does crime label and timestamp correlate with an area? Spoiler: nope!
 X = preprocess_for_clustering(sub).drop(["longitude", "latitude"], axis=1)
 clf = cluster.AgglomerativeClustering(
@@ -81,3 +81,9 @@ for n_clusters in range(3, 8):
     save_figure(
         fig, f"agglomerative_clustering_{n_clusters}_clusters_visualize_coordinates"
     )
+
+# %%
+
+# %%
+
+# %%
