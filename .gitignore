@@ -195,3 +195,4 @@ case/test-output.xml
 *.feather
 case/artifacts/*
 .direnv
+*.key
