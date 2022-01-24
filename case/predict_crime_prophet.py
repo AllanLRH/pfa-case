@@ -14,7 +14,7 @@ from prophet.plot import plot_components_plotly, plot_plotly
 from src.shared_ressources import seaborn_context
 from src.preprocess_for_ml import convert_to_prophet_format
 from src.io_ops import load_sf_dataset, save_figure
-from src.shared_ressources import logger, pfa_red
+from src.shared_ressources import logger, pfa_red, case_root
 
 sns.set(sns.set(**seaborn_context))
 
@@ -51,7 +51,8 @@ forecast["y"] = data_test["y"].reset_index(drop=True)
 
 pf1 = plot_plotly(m, forecast)
 pf2 = plot_components_plotly(m, forecast)
-
+pf1.write_html(case_root / "artifacts" / "prophet_forecast.html")
+pf2.write_html(case_root / "artifacts" / "prophet_forecast_components.html")
 pf1.show()
 pf2.show()
 # %% Same plots as above, but made in Matplotlib for export
