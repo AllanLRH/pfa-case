@@ -125,7 +125,7 @@ save_figure(fig, "district_histogram")
 
 
 # %% Activity at each day of each year
-fig, ax = plt.subplots(figsize=(9, 4.5))
+fig, ax = plt.subplots(figsize=(8, 4.5))
 activity_year_round = (
     df.groupby(["year", "day_of_year"])["datetime"]
     .count()
@@ -150,7 +150,7 @@ ax.set_yticklabels([])
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
-plt.tight_layout()
+plt.subplots_adjust(right=0.85)
 save_figure(ax, "observations_by_day_of_year_for_each_year")
 
 # %% Activity at each day og each year
