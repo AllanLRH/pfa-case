@@ -36,8 +36,7 @@ def plot_cluster(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:
 
 # %% Load the data, subsample for fast experimentation
 df = load_sf_dataset()
-sub = df
-# sub = df.sample(5000)
+sub = df.sample(35_000)
 
 # %% Check for structure WITHOUT the coordinates... does crime label and timestamp correlate with an area? Spoiler: nope!
 X = preprocess_for_clustering(sub).drop(["longitude", "latitude"], axis=1)
@@ -81,9 +80,3 @@ for n_clusters in range(3, 8):
     save_figure(
         fig, f"agglomerative_clustering_{n_clusters}_clusters_visualize_coordinates"
     )
-
-# %%
-
-# %%
-
-# %%
