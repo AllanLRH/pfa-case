@@ -10,7 +10,7 @@ import seaborn as sns
 from sklearn import preprocessing
 from src.shared_ressources import seaborn_context
 
-sns.set(sns.set(**seaborn_context))
+sns.set(**seaborn_context)
 
 # %%
 

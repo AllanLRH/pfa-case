@@ -16,7 +16,7 @@ from src.preprocess_for_ml import convert_to_prophet_format
 from src.io_ops import load_sf_dataset, save_figure
 from src.shared_ressources import logger, pfa_red, case_root
 
-sns.set(sns.set(**seaborn_context))
+sns.set(**seaborn_context))
 
 # %% Load and preprocess data into a the format expected by Probhet
 # %% Load and preprocess data into a the format expected by Prophet

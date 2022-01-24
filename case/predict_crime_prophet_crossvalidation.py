@@ -18,7 +18,7 @@ from src.preprocess_for_ml import convert_to_prophet_format
 from src.io_ops import load_sf_dataset, save_figure
 from src.shared_ressources import logger, pfa_red
 
-sns.set(sns.set(**seaborn_context))
+sns.set(**seaborn_context))
 
 # %% Load and preprocess data into a the format expected by Probhet
 # %% Load and preprocess data into a the format expected by Prophet
@@ -51,7 +51,7 @@ forecast = pd.concat(
 forecast.loc[train_mask, "train_or_test"] = "train"
 forecast.loc[~train_mask, "train_or_test"] = "test"
 forecast.head()
-# %%
+# %% plot entire timeline
 forecast["rse"] = np.sqrt((forecast.yhat - forecast.y) ** 2)
 fig, ax = plt.subplots(figsize=(12, 7))
 forecast.query("train_or_test == 'train'").rse.plot(
@@ -64,7 +64,8 @@ forecast.query("train_or_test == 'test'").rse.plot(
 (forecast.rse.cumsum() / np.arange(1, len(forecast) + 1)).plot(
     color="yellow", label="Running RMSE"
 )
-ax.legend()
 save_figure(fig, "rmse_prophet_all_crime_4h_binning")
+ax.legend()
+# %% plot the last
 
 # %%
