@@ -47,6 +47,7 @@ def save_figure(
     pdf: bool = True,
     png: bool = True,
     use_format_subfolders: bool = True,
+    raster_dpi: int = 300,
 ) -> None:
     def _do_the_saving(fig, name, directory, fileformat, use_format_subfolders) -> None:
         savedir = directory / fileformat if use_format_subfolders else directory
@@ -72,4 +73,4 @@ def save_figure(
     if pdf:
         _do_the_saving(fig, name, directory, "pdf", use_format_subfolders)
     if png:
-        _do_the_saving(fig, name, directory, "png", use_format_subfolders)
+        _do_the_saving(fig, name, directory, "png", use_format_subfolders, dpi=raster_dpi)
