@@ -79,12 +79,17 @@ def preprocess_for_clustering(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     # This only runs if this file is executed as a script.
     # The code below is intended as debugging code / an explanation for the sine and cosine transform of the time variables
+    from io_ops import save_figure
+
     fig, ax = plt.subplots(figsize=(12, 7))
-    ss = np.arange(0, 24 * 3600)
+    ss = np.arange(0, 24 * 3600 * 7)
     y1 = np.sin(2 * np.pi * ss / (24 * 3600))
     y2 = np.cos(2 * np.pi * ss / (24 * 3600))
     ax.plot(ss, y1, label="sin")
     ax.plot(ss, y2, label="cos")
+    # ax.plot(ss, ss, label="Continious time")
+    ax.plot(ss, (ss % (24 * 3600)) / 3600, label="Dayly time, hours")
     ax.legend()
+    save_figure(fig, "sine_cosine_transform_of_time")
 
 # %%
