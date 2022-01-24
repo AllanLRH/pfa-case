@@ -16,7 +16,9 @@ from src.preprocess_for_ml import (
     preprocess_for_clustering,
     preprocess_for_clustering_coordinates_only,
 )
-from src.shared_ressources import logger
+from src.shared_ressources import logger, seaborn_context
+
+sns.set(**seaborn_context)
 
 # %% supporting functions
 def plot_cluster(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:
@@ -30,6 +32,7 @@ def plot_cluster(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:
     )
     ax.set_xticklabels([])
     ax.set_yticklabels([])
+    fig.tight_layout()
     return fig, ax
 
 
