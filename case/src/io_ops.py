@@ -53,7 +53,7 @@ def save_figure(
         savedir = directory / fileformat if use_format_subfolders else directory
         savedir.mkdir(exist_ok=True)
         save_path = savedir / f"{name}.{fileformat}"
-        fig.savefig(save_path)
+        fig.savefig(save_path, dpi=raster_dpi)
 
     if not directory.exists() and directory.is_dir():
         raise FileNotFoundError(f"Output directory does not exist ({directory})")
@@ -73,4 +73,4 @@ def save_figure(
     if pdf:
         _do_the_saving(fig, name, directory, "pdf", use_format_subfolders)
     if png:
-        _do_the_saving(fig, name, directory, "png", use_format_subfolders, dpi=raster_dpi)
+        _do_the_saving(fig, name, directory, "png", use_format_subfolders)
