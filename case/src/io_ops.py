@@ -3,7 +3,6 @@ from pathlib import Path
 from src.shared_ressources import case_root, settings
 import matplotlib as mpl
 from typing import Union
-from copy import deepcopy
 
 
 def load_sf_dataset():
@@ -48,7 +47,6 @@ def save_figure(
     pdf: bool = True,
     png: bool = True,
     use_format_subfolders: bool = True,
-    tight_layout: bool = True,
 ) -> None:
     def _do_the_saving(fig, name, directory, fileformat, use_format_subfolders) -> None:
         savedir = directory / fileformat if use_format_subfolders else directory
@@ -70,9 +68,7 @@ def save_figure(
         raise ValueError(
             f"`fig_or_ax` must be a matplotlib Figure or Axis instance, but {type(fig_or_ax)=}"
         )
-    if tight_layout:
-        fig = deepcopy(fig)  # don't modify the original figure (sideeffect)
-        fig.tight_layout()
+
     if pdf:
         _do_the_saving(fig, name, directory, "pdf", use_format_subfolders)
     if png:
