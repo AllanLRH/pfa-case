@@ -8,9 +8,6 @@ matplotlib
 pandas-profiling[notebook]
 ipykernel
 jupyterlab
-networkx
-pyshp
-geopandas
 pytest
 hiplot
 streamlit-folium
@@ -23,6 +20,8 @@ prophet
 mlflow
 pydantic[dotenv]
 sklearn
+xgboost
+catboost
 loguru
 hdbscan
 devtools[pygments]
