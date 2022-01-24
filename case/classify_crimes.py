@@ -1,21 +1,14 @@
 # %% Imports
-import hdbscan
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import xgboost
-import catboost
 from sklearn import model_selection, metrics
 
 from src.io_ops import load_sf_dataset, save_figure
-from src.preprocess_for_ml import (
-    preprocess_for_clustering,
-    preprocess_for_clustering_coordinates_only,
-)
-from src.shared_ressources import case_root, weekdays
-from src.shared_ressources import streamlit_keplergl_config as config
+from src.shared_ressources import logger
 
 # %% Load data and do basic data munging
 

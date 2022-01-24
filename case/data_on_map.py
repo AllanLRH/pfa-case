@@ -1,9 +1,6 @@
 #!/usr/bin/env pythonw
 # -*- coding: utf8 -*-
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-
 # %% Imports and constants
 import numpy as np
 import pandas as pd
@@ -14,7 +11,7 @@ from keplergl import KeplerGl
 from streamlit_keplergl import keplergl_static
 
 from src.io_ops import load_sf_dataset
-from src.shared_ressources import case_root, weekdays
+from src.shared_ressources import logger, weekdays
 from src.shared_ressources import streamlit_keplergl_config as config
 
 st.set_page_config(layout="wide")

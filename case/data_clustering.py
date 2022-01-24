@@ -16,8 +16,7 @@ from src.preprocess_for_ml import (
     preprocess_for_clustering,
     preprocess_for_clustering_coordinates_only,
 )
-from src.shared_ressources import case_root, weekdays
-from src.shared_ressources import streamlit_keplergl_config as config
+from src.shared_ressources import logger
 
 # %% supporting functions
 def plot_cluster(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:

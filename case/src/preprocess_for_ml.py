@@ -7,9 +7,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from prophet import Prophet
-from sklearn import preprocessing, model_selection
-from src.shared_ressources import case_root, seaborn_context, weekdays
+from sklearn import preprocessing
+from src.shared_ressources import seaborn_context
 
 sns.set(sns.set(**seaborn_context))
 
