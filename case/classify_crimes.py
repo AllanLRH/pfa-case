@@ -85,9 +85,10 @@ logger.debug(f"{rs_clf.best_estimator_=}")
 clf = rs_clf.best_estimator_
 
 # Save the estimator
-with (
+best_estimator_save_path = (
     case_root / "artifacts" / "best_estimator_xgboost_violent_crime_prediction.pkl"
-).open("bw") as fid:
+)
+with best_estimator_save_path.open("bw") as fid:
     pickle.dump(clf, fid)
 
 # %%
