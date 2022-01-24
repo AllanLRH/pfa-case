@@ -8,6 +8,8 @@ Be sure to have the interpreter `cwd` set to the `case`-folder.
 
 Also be sure the create a `.env`-file in the root directory containing the keys found in the `.envrc`-file in the same directory.
 
+The required dependencies are listed in the `requirements.txt`-file, and to set up af virtiual environment, simply run `python -m venv .venv`, activate the environment with `source .venv/bin/activate` and install the dependencies using `pip install -r requirements.txt`.
+
 ## About the data
 
 From the data description:
