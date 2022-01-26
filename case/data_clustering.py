@@ -62,6 +62,7 @@ clf = hdbscan.HDBSCAN(
 clst = clf.fit_predict(X)
 sub["clst"] = clst
 fig, ax = plot_cluster(sub)
+save_figure(fig, "hdbscan_clyusters_visualize_coordinates")
 
 # %%
 for n_clusters in range(3, 8):
